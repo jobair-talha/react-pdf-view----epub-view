@@ -1,21 +1,39 @@
+import { TextDirection, Viewer, Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-import { useState } from "react";
-import { ReactReader } from "react-reader";
 import "./App.css";
+import AudioPlayer from "./AudioPlayer";
 
 function App() {
-  const [location, setLocation] = useState(0);
-  const epubUrl = "/Around the World in 28 Languages.epub";
+  const audioUrl = "/01 Demacia Rising.mp3";
+
+  const characterMap = {
+    isCompressed: true,
+
+    url: "https://unpkg.com/pdfjs-dist@2.6.347/cmaps/",
+  };
 
   return (
     <div className="container">
-      <div style={{ height: "100vh" }}>
-        <ReactReader
-          url={epubUrl}
-          location={location}
-          locationChanged={(epubcifi) => setLocation(epubcifi)}
-        />
-      </div>
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+        <div
+          style={{
+            border: "1px solid rgba(0, 0, 0, 0.3)",
+            height: "750px",
+          }}
+        >
+          <Viewer
+            theme={{
+              theme: "dark",
+              direction: TextDirection.RightToLeft,
+            }}
+            // initialRotation={90}
+            initialPage={2}
+            characterMap={characterMap}
+            fileUrl="/Essay summer & winter.pdf"
+          />
+        </div>
+      </Worker>
+      <AudioPlayer audioUrl={audioUrl} />
     </div>
   );
 }
