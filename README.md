@@ -1,8 +1,13 @@
-# React + Vite
+#EPUB VIEW
+import { useState } from "react";
+import { ReactReader } from "react-reader";
+const [location, setLocation] = useState(0);
+const epubUrl = "FILE_LOCATION.epub";
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    <ReactReader
+          url={epubUrl}
+          location={location}
+          locationChanged={(epubcifi) => setLocation(epubcifi)}
+        />
+      </div>
+    </div>
